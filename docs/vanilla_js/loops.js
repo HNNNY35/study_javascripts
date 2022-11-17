@@ -39,4 +39,31 @@ for (let animal of animals_obj) {
 const cars = ["BMW", "Volvo", "Mini"];
 for (let car of cars) {
   console.log(`${car}`);
+  cars[0];
+}
+// cars => foreach
+cars.forEach((car) => console.log(`${car}`));
+
+cars.forEach((car) => {
+  console.log(`${car}`);
+});
+// 굳이 펑션을 따로 선언하지 않고 사용하는 경우가 많음
+// 데이터타입이 array인 경우 forEach 사용 가능!
+
+// forEach : 이렇게 사용하는 경우가 대부분
+const array1 = ["a", "b", "c"];
+array1.forEach((element) => console.log(element));
+// 특정 펑션에서 파라메타가 콜백 펑션이 들어가고 그걸 배치할 수 있구나
+
+// 이렇게 작성하는게 좋음!!!!!
+// Arrow Function : arrow를 기준으로 앞부분은 파라메터
+// 이게 위에 단순화되어 들어가 있는 것임
+let arrowFunction = (element) => {
+  console.log(element);
+};
+array1.forEach(arrowFunction);
+
+// Normal Function
+function normalFunction(element) {
+  console.log(element);
 }
