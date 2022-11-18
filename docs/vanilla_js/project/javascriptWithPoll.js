@@ -81,9 +81,18 @@ let inputs = fs
 
 let question_uid;
 let user_answer;
-let combine_arr = new Object();
+let combine_arr = [];
 
-// function
+// 함수들
+
+// 문항 출력 : 인덱스에 맞는 문항을 출력하고 문항 uid 반환하는 함수
+function print_question(i) {
+  console.log(`${questions_list[i].orders}. ${questions_list[i].questions}`);
+  question_uid = questions_list[i].questions_uid;
+  return question_uid;
+}
+
+// q_uid와 일치하는 답항들을 출력하는 함수
 function match_quid_auid(question_uid) {
   // q_uid와 일치하는 e_uid_list 배열에 담기
   let e_uid_list = answers.filter((e) => e.questions_uid === question_uid);
@@ -99,12 +108,14 @@ function match_quid_auid(question_uid) {
   console.log();
 }
 
+// 인덱스에 맞는 사용자 답안 출력하는 함수
 function print_user_answer(i) {
   let user_answer = inputs[i];
   console.log(`답) ${user_answer}\n`);
   return user_answer;
 }
 
+// 사용자 답안 번호와 orders가 일치하는 exmaple을 찾아서 반환하는 함수
 function match_user_answer(user_answer) {
   // user_answer와 orders가 일치하는 example
   for (let i = 0; i < example_list.length; i++) {
@@ -115,24 +126,15 @@ function match_user_answer(user_answer) {
   }
 }
 
-// 인덱스 순서대로 문항 출력
+// 문항, 답항, 사용자 답안 출력
 for (let i = 0; i < questions_list.length; i++) {
-  console.log(`${questions_list[i].orders}. ${questions_list[i].questions}`);
-
-  // 출력한 문항 uid 저장하기
-  question_uid = questions_list[i].questions_uid;
-
-  // 문항의 uid에 맞는 답항 출력하기 => function
+  question_uid = print_question(i);
   match_quid_auid(question_uid);
-
-  // 사용자 답안 출력 => function
   user_answer = print_user_answer(i);
-
-  // 사용자 답안번호와 orders가 일치하는 example 찾기 => function
-  user_example = match_user_answer(user_answer);
 
   //  2. 처리
   //  : 문항, 설문 답항, 답변이 각각 분리되어있는 것을 매칭
+  user_example = match_user_answer(user_answer);
   combine_arr[i] = {
     q_order: questions_list[i].orders,
     question: questions_list[i].questions,
@@ -142,15 +144,15 @@ for (let i = 0; i < questions_list.length; i++) {
 }
 
 // 3. 출력
-// : 설문 선택이 끝나면 실제로 사용자가 선택한 것을 밑에 출력
+// : 설문 선택이 끝나면 실제로 사용자가 선택한 것을 출력
 console.log(`--------------------- 설문자 선택 --------------------------`);
 // 출력내용 : 문항orders, question, 사용자답안번호, example
 
-for (let i = 0; i < 5; i++) {
+combine_arr.forEach(function (combine, idx) {
   console.log(
-    `${combine_arr[i].q_order}. ${combine_arr[i].question}\n (${combine_arr[i].user_answer}) ${combine_arr[i].user_example}\n`
+    `${combine_arr[idx].q_order}. ${combine_arr[idx].question}\n (${combine_arr[idx].user_answer}) ${combine_arr[idx].user_example}\n`
   );
-}
+});
 
 console.log(`이용해주셔서 감사합니다!`);
 console.log();
