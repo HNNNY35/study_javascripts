@@ -9,6 +9,7 @@ for (i = 0; i < animals.length; i++) {
 for (let animal of animals) {
   console.log(`${animal}`);
 }
+// 단점 : 인덱스 번호를 알 수 없음 => 감안해서 나온 것이 forEach
 
 // let animal = {key:value, key:value, key:value};
 
@@ -67,3 +68,11 @@ array1.forEach(arrowFunction);
 function normalFunction(element) {
   console.log(element);
 }
+
+// forEach에서 인덱스를 가져올 수 있음(파라메터 이름은 자기가 지정하는 것. 앞에 해당되는 펑션에 정의되어 있음)
+array1.forEach((element, index) => console.log(element));
+
+let arrowFunction2 = (element, index) => {
+  console.log(`${element}, index ${index}`);
+};
+array1.forEach(arrowFunction2);

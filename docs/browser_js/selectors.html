@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Selectors</h3>
+
+    <h3 id="selector">selector with id</h3>
+
+    <p id="title">DOM</p>
+    <button id="btn">Click Me</button>
+    <ul class="list">
+      <li class="item">Apple</li>
+      <li class="item">Azue</li>
+      <li class="item">Samsung</li>
+      <li class="item">IBM</li>
+    </ul>
+    <a id="google" href="https://www.google.com">Google</a>
+
+    <script>
+      // 클래스는 여러개에 줄 수 있어서 복수. list 받을때는 배열로 받게 됨
+      let listByClassName = document.getElementsByClassName("list");
+      console.log(`${listByClassName}`);
+
+      // id는 하나만 줄 수 있어서 단수로 떨어짐
+      let titleById = document.getElementById("title");
+      titleById.innerHTML = "Title By Id";
+
+      let elementById = document.getElementById("selector");
+      // console.log(`elementById : ${elementById}`);
+      elementById.innerHTML = "<b>Change selector</b>";
+    </script>
+  </body>
+</html>
