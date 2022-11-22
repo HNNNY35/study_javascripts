@@ -9,7 +9,6 @@
   <body>
     <h3>selectors</h3>
     <h3 id="selector">selector with id</h3>
-    <!--selector : element name, id, class -->
 
     <p id="title">DOM</p>
     <button id="btn">Click Me</button>
@@ -27,26 +26,20 @@
     <a id="google" href="https://www.google.com">Google</a>
 
     <script>
-      // body태그 내 모든 형제 출력
-      let querybody = document.querySelectorAll("body");
-      querybody.forEach((element) => {
-        console.log(element);
+      // body 내 모든 형제 출력
+      let queryBody = document.querySelectorAll("body > *");
+      queryBody.forEach((body, index) => {
+        console.log(body);
       });
 
-      // 모든 .list와 .item 출력
-      let querylist = document.querySelectorAll(".list");
-      querylist.forEach((lists) => {
-        console.log(`${lists}`);
-      });
-
-      let queryitem1 = querylist[0].querySelectorAll(".item");
-      queryitem1.forEach((item) => {
-        console.log(`${item}`);
-      });
-
-      let queryitem2 = querylist[1].querySelectorAll(".item");
-      queryitem2.forEach((item) => {
-        console.log(`${item}`);
+      // 모든 .list와 .item 각각 출력
+      let queryLists = document.querySelectorAll(".list");
+      queryLists.forEach((queryList, index) => {
+        console.log(`${index} : ${queryList.outerHTML}`);
+        let queryItems = queryList.querySelectorAll(".item");
+        queryItems.forEach((queryItem, index) => {
+          console.log(`${index} : ${queryItem.outerHTML}`);
+        });
       });
     </script>
   </body>

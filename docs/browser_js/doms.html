@@ -7,7 +7,35 @@
     <title>My Title</title>
   </head>
   <body>
-    <a href="">My Link</a>
+    <a href="" id="aTag">My Link</a>
     <h1>My header</h1>
+
+    <div class="container">
+      <div class="inner first">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+      </div>
+      <div class="inner second">
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+      </div>
+    </div>
+
+    <script>
+      // 위치값을 중심으로 위, 아래 선택하기
+      let queryId_a = document.querySelector("#aTag");
+      queryId_a.parentElement; // => body
+      queryId_a.children; // 값이 없음 : 자손 element가 없기 때문
+      queryId_a.text; // My Link : 이건 text기 때문에 자손으로 나오지 않음
+
+      // 형제 선택하기
+      queryId_a.nextElementSibling; // 다음 형제를 선택할 수 있음
+
+      // 컨테이너를 선택한 상태에서 <div class="item">5</div> 선택
+      let queryContainer = document.querySelector(".container");
+      console.log(`${queryContainer.children[1].children[1].outerHTML}`);
+    </script>
   </body>
 </html>
