@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/events.css" />
+  </head>
+  <body>
+    <h3>Property</h3>
+    <!-- Property 방식은 사용 권장하지 않음 
+    elements 태그 안에 onclick을 넣어줌 : 하드코딩-->
+    <div onclick="alert('click on Me')">Click on Me! with alert()</div>
+    <div id="changetext" onclick="changeText()">
+      Click on Me! with own function
+    </div>
+
+    <h3>Listener</h3>
+    <!-- Listener 방식 권장 -->
+    <div id="clickalert">Click on Me! with alert()</div>
+    <div id="targetText">Target Change Text</div>
+    <button id="buttonChangeText">Change Text</button>
+  </body>
+  <script src="./js/events.js"></script>
+</html>
