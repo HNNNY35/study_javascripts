@@ -100,8 +100,8 @@ function print_answer(idx) {
       // console.log(
       //   `(${example_list[i]["order"]}) ${example_list[i]["example"]}`
       // );
-      prints += `<input type="radio" name="answers[idx]["questions_uid"]" id="answers[idx]["questions_uid"]_example_list[i]["example_uid"]" />
-      <label for="answers[idx]["questions_uid"]_example_list[i]["example_uid"]">(${example_list[i]["order"]}) ${example_list[i]["example"]}</label>`;
+      prints += `<div><input type="radio" name="answers[idx]["questions_uid"]" id="answers[idx]["questions_uid"]_example_list[i]["example_uid"]" />
+      <label for="answers[idx]["questions_uid"]_example_list[i]["example_uid"]">(${example_list[i]["order"]}) ${example_list[i]["example"]}</label></div>`;
     }
   }
 }
