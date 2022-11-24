@@ -70,6 +70,12 @@
       queryList.querySelectorAll(".item"); // => 4개의 li가 나옴
 
       // 위에서부터 다 쿼리셀렉터만 써서 출력해보기
+
+      var button = document.getElementById("btn");
+      button.addEventListener("click", function () {
+        button.innerHTML = "클릭 후";
+        button.style.color = "red";
+      });
     </script>
   </body>
 </html>
