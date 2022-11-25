@@ -121,12 +121,79 @@ function getAnswerByUid(answer_uid) {
 }
 
 for (let poll of polls) {
-  console.log(
-    `${poll["questions_uid"]}. ${getQuestionByUid(poll["questions_uid"])}`
-  ); // == polls[idx]
+  let question_desc = getQuestionByUid(poll["questions_uid"]);
+  // console.log(
+  // `${poll["questions_uid"]}. ${getQuestionByUid(poll["questions_uid"])}`
+  // ); // == polls[idx]
   let answer_uids = poll["answer_uids"];
   answer_uids.forEach((answer_uid, index) => {
     // answers
-    console.log(`(${index + 1}) ${getAnswerByUid(answer_uid)}`);
+    // console.log(`(${index + 1}) ${getAnswerByUid(answer_uid)}`);
   });
+}
+
+// Event handlers
+// Next 클릭 시 순서있게 설문 표시
+// 대상 변수는 polls
+let index = -1;
+let queryNext = document.querySelector("#next");
+queryNext.addEventListener("click", setPollContentNext);
+
+function setPollContentNext() {
+  if (index < 4) {
+    index++;
+    let queryContent = document.querySelector("#poll-contents");
+    // polls[0]["questions_uid"]; // 설문 문항
+    // polls[1]["answer_uids"]; // 설문 답항 묶음
+    // console.log(`${getQuestionByUid(polls[index]["questions_uid"])}`);
+
+    let desc = `<div>${index + 1}. ${getQuestionByUid(
+      polls[index]["questions_uid"]
+    )}</div>`;
+    polls[index]["answer_uids"].forEach((answer_uid, index) => {
+      //answers
+      //   console.log(`${index + 1}. ${getAnswerByUid(answer_uid)}`);
+      desc =
+        desc +
+        `<div>
+        <input type="radio" name = "poll" id="A${index}" /><label
+          for="A${index}"
+          >(${index + 1}) ${getAnswerByUid(answer_uid)}</label
+        >
+      </div>`;
+    });
+
+    queryContent.innerHTML = desc;
+  } else {
+    alert("다음 문항이 없습니다.");
+  }
+}
+
+let queryPrev = document.querySelector("#prev");
+queryPrev.addEventListener("click", setPollContentPrev);
+
+function setPollContentPrev() {
+  if (index > 0) {
+    index--;
+
+    let queryContent = document.querySelector("#poll-contents");
+
+    let desc = `<div>${index + 1}. ${getQuestionByUid(
+      polls[index]["questions_uid"]
+    )}</div>`;
+    polls[index]["answer_uids"].forEach((answer_uid, index) => {
+      desc =
+        desc +
+        `<div>
+        <input type="radio" name = "poll" id="A${index}" /><label
+          for="A${index}"
+          >(${index + 1}) ${getAnswerByUid(answer_uid)}</label
+        >
+      </div>`;
+    });
+
+    queryContent.innerHTML = desc;
+  } else {
+    alert("이전 문항이 없습니다.");
+  }
 }
