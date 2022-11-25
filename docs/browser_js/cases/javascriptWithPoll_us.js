@@ -135,29 +135,29 @@ for (let poll of polls) {
 // Event handlers
 // Next 클릭 시 순서있게 설문 표시
 // 대상 변수는 polls
-let index = -1;
+let page_index = -1;
 let queryNext = document.querySelector("#next");
 queryNext.addEventListener("click", setPollContentNext);
 
 function setPollContentNext() {
-  if (index < 4) {
-    index++;
+  if (page_index < 4) {
+    page_index++;
     let queryContent = document.querySelector("#poll-contents");
     // polls[0]["questions_uid"]; // 설문 문항
     // polls[1]["answer_uids"]; // 설문 답항 묶음
     // console.log(`${getQuestionByUid(polls[index]["questions_uid"])}`);
 
-    let desc = `<div>${index + 1}. ${getQuestionByUid(
-      polls[index]["questions_uid"]
+    let desc = `<div>${page_index + 1}. ${getQuestionByUid(
+      polls[page_index]["questions_uid"]
     )}</div>`;
-    polls[index]["answer_uids"].forEach((answer_uid, index) => {
+    polls[page_index]["answer_uids"].forEach((answer_uid, index) => {
       //answers
       //   console.log(`${index + 1}. ${getAnswerByUid(answer_uid)}`);
       desc =
         desc +
         `<div>
-        <input type="radio" name = "poll" id="A${index}" /><label
-          for="A${index}"
+        <input type="radio" name = "Q${page_index}" id="Q${page_index}_A${index}" /><label
+          for="Q${page_index}_A${index}"
           >(${index + 1}) ${getAnswerByUid(answer_uid)}</label
         >
       </div>`;
@@ -173,20 +173,20 @@ let queryPrev = document.querySelector("#prev");
 queryPrev.addEventListener("click", setPollContentPrev);
 
 function setPollContentPrev() {
-  if (index > 0) {
-    index--;
+  if (page_index > 0) {
+    page_index--;
 
     let queryContent = document.querySelector("#poll-contents");
 
-    let desc = `<div>${index + 1}. ${getQuestionByUid(
-      polls[index]["questions_uid"]
+    let desc = `<div>${page_index + 1}. ${getQuestionByUid(
+      polls[page_index]["questions_uid"]
     )}</div>`;
-    polls[index]["answer_uids"].forEach((answer_uid, index) => {
+    polls[page_index]["answer_uids"].forEach((answer_uid, index) => {
       desc =
         desc +
         `<div>
-        <input type="radio" name = "poll" id="A${index}" /><label
-          for="A${index}"
+        <input type="radio" name = "Q${page_index}" id="Q${page_index}_A${index}" /><label
+          for="Q${page_index}_A${index}"
           >(${index + 1}) ${getAnswerByUid(answer_uid)}</label
         >
       </div>`;
