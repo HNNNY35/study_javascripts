@@ -68,65 +68,26 @@ const questions_answers = [
 
 let polls = []; // 전체 묶음
 let question_compare;
-let questions = {}; // 내부 묶음
-let answer_uids = []; // 내부 설문 답변 묶음
+let questions = []; // soqn 묶음
+
 for (let idx = 0; idx < questions_answers.length; idx++) {
   if (question_compare != questions_answers[idx]["questions_uid"]) {
-    if (Object.keys(questions).length > 0) {
-      questions["answer_uids"] = answer_uids;
+    if (questions.length > 0) {
       polls.push(questions);
-      questions = {};
-      answer_uids = [];
+      questions = [];
     }
-
     // console.log(`!= : ${questions_answers[idx]["questions_uid"]}`);
     // console.log(`!= : ${questions_answers[idx]["answer_uid"]}`);
-    questions["questions_uid"] = questions_answers[idx]["questions_uid"];
-    answer_uids.push(questions_answers[idx]["answer_uid"]);
+    questions.push(questions_answers[idx]["questions_uid"]);
+    questions.push(questions_answers[idx]["answer_uid"]);
   } else {
     // console.log(`== : ${questions_answers[idx]["answer_uid"]}`);
-    answer_uids.push(questions_answers[idx]["answer_uid"]);
-    if (idx + 1 >= questions_answers.length) {
-      questions["answer_uids"] = answer_uids;
-      polls.push(questions);
-    }
+    questions.push(questions_answers[idx]["answer_uid"]);
   }
   question_compare = questions_answers[idx]["questions_uid"]; // 이전 uid 입력
+
+  if (idx == questions_answers.length - 1) {
+    polls.push(questions);
+  }
 }
-
-// 설문 문항을 가져오는 function
-// Q1. 해당 매장을 방문시 매장은 청결 하였습니까?
-// 1. E1
-// 2. E2
-function getQuestionByUid(question_uid) {
-  let question_desc;
-
-  questions_list.forEach((question, index) => {
-    if (question["questions_uid"] == question_uid) {
-      question_desc = question["question"];
-    }
-  });
-  return question_desc;
-}
-
-function getAnswerByUid(answer_uid) {
-  let answer_desc;
-
-  answer_list.forEach((answer, index) => {
-    if (answer["answer_uid"] == answer_uid) {
-      answer_desc = answer["answer"];
-    }
-  });
-  return answer_desc;
-}
-
-for (let poll of polls) {
-  console.log(
-    `${poll["questions_uid"]}. ${getQuestionByUid(poll["questions_uid"])}`
-  ); // == polls[idx]
-  let answer_uids = poll["answer_uids"];
-  answer_uids.forEach((answer_uid, index) => {
-    // answers
-    console.log(`(${index + 1}) ${getAnswerByUid(answer_uid)}`);
-  });
-}
+console.log(`${polls}`);
