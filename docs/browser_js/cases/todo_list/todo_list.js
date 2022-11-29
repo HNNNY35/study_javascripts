@@ -8,7 +8,7 @@ queryAddBtn.addEventListener("click", (event) => {
 });
 
 queryInput.addEventListener("keydown", (event) => {
-  if (event.code == "Enter") {
+  if (event.key == "Enter") {
     addList(event);
   }
 });
