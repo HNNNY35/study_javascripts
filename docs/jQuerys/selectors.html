@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h3>Selectors</h3>
+    <p>This is P element</p>
+    <button>Click me to hide P</button>
+    <div id="btn">Click me with ID to hide P</div>
+    <div class="btn_class">Click me with Class to hide P</div>
+
+    <div>
+        <a href="./index.html">back to Index</a>
+    </div>
+    <script>
+        // $(document).ready(function(){
+        $(function() {
+            // element
+            $("button").click(function(){
+                $("p").hide();
+            });
+            // with ID
+            $("#btn").click(function(){
+                $("p").hide();
+            });
+            // with Class
+            $(".btn_class").click(function(){
+                $("p").hide();
+            });
+        });
+    </script>
+</body>
+
+</html>
